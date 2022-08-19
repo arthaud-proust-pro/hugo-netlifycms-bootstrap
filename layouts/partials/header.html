@@ -1,0 +1,19 @@
+<header class="sticky-top">
+    <div class="container">
+        <div class="row py-2">
+            <nav class="navbar">
+                <h6 class="m-0">
+                    <a class="text-black navbar-brand" href="/">
+                        {{ .Site.Params.seo.author}}
+                    </a>
+                </h6>
+                <button class="supercursor-hover ms-auto navbar-toggler p-2 me-n2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu" aria-label="Ouvrir le menu">
+                    Menu
+                </button>
+            </nav>
+        </div>
+    </div>  
+    <div>
+        {{ partial "menu.html" .}}
+    </div>
+</header>

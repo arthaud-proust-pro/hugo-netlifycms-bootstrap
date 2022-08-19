@@ -1,0 +1,37 @@
+{{ $t := mul 1000 (time "2016-05-28T10:30:00.00+10:00").Unix }}
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- turbo -->
+<meta name="turbo-cache-control" content="no-cache">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@200;400;800&display=swap" rel="stylesheet">
+
+
+{{ $sass := resources.Get "sass/application.scss" }}
+{{ $sassOpts := (dict "outputStyle" "compressed")}}
+{{ $style := $sass | resources.ToCSS $sassOpts | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ $style.Permalink }}?v={{ $t }}" integrity="{{ $style.Data.Integrity }}">
+
+
+{{ $sass := resources.Get "sass/needed.scss" }}
+{{ $sassOpts := (dict "outputStyle" "compressed")}}
+{{ $style = $sass | toCSS | minify }}
+<style>{{ $style.Content | safeCSS }}</style>
+
+
+<!-- swiper -->
+
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script defer src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script defer src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
+
+<!-- app js -->
+{{ $shims := dict "utils" "js/shims/utils.js" }}
+{{ $js := resources.Get "js/application.js" | js.Build (dict "shims" $shims) }}
+<script defer src="{{ $js.Permalink }}?v={{ $t }}"></script>
+

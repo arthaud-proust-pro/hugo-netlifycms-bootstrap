@@ -1,0 +1,25 @@
+languageCode: 'fr'
+title: Example site
+baseURL: https://example.net
+removePathAccents: true
+
+params:
+  email: contact@example.net
+  phone: "00 00 00 00"
+  seo:
+    author: Author Name
+    title: Author Name - Short presentation
+    desc: "Long description with maximum keywords - Author Name"
+    url: https://example.net
+    hero: /sprites/hero-min.jpg
+    logo: /sprites/logo.png
+    links:
+      twitter: https://twitter.com/example_account
+
+menu:
+  main:
+    - name: Contact
+      pre: contact
+      url: "/#contact"
+      weight: 1
+    
